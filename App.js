@@ -12,12 +12,16 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName={"Login"}>
       <Stack.Screen
       options={{ headerTransparent: true, headerBackTitleVisible:false,headerTintColor: "white" ,headerTitle:""}}
        name="Login" component={LoginScreen}/>
-      <Stack.Screen name="Register" component={RegisterScreen}/>
-      <Stack.Screen name="Home" component={HomeScreen}/>
+      <Stack.Screen
+          options={{ headerTransparent: true, headerBackTitleVisible:false,headerTintColor: "white" ,headerTitle:"",headerBackVisible:false}}
+          name="Register" component={RegisterScreen}/>
+      <Stack.Screen
+          options={{ headerTransparent: true, headerBackTitleVisible:false,headerTintColor: "white" ,headerTitle:""}}
+          name="Home" component={HomeScreen}/>
     </Stack.Navigator>
     </NavigationContainer>
   );

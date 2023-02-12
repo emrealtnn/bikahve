@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../../firebase-config";
@@ -38,148 +38,91 @@ export default function SigninScreen() {
     };
 
     return (
-        <ScrollView style={{backgroundColor: "#000", flex: 1}}>
-            <View style={style.textItem}>
-                <Text style={style.textStyle}> PowerFit </Text>
-                <Text style={style.textStyle2}>Vücudunuzu inşa etmek için</Text>
-                <Text style={style.textStyle2}>hesap oluşturun</Text>
-            </View>
-            <View>
-                <View style={style.board}>
-                    <View style={{width: 327, marginTop: 10}}>
-                        <Text style={style.textinputItem}> Adınız</Text>
-                    </View>
+          <ScrollView style={{flex: 1, backgroundColor: "#2d1a0f"}}>
+                <View>
+                    <Image source={require('../../assets/img/coffee.png')} style={{marginTop:80, alignSelf: 'center', width:100, height:100}}/>
+                    <Text style={styles.title}>Kayıt Ol</Text>
+                </View>
+                <View style={{marginTop: 10, alignSelf: "center"}}>
                     <TextInput
-                        style={style.textInput}
+                        style={styles.inputStyle}
+                        placeholderTextColor={"#8b7d6b"}
+                        placeholder={"Adınız"}
                         value={name}
                         onChangeText={(text) => setName(text)}
                     ></TextInput>
-                </View>
-                <View style={style.board}>
-                    <View style={{width: 327,}}>
-                        <Text style={style.textinputItem}> Soyadınız</Text>
-                    </View>
                     <TextInput
-                        style={style.textInput}
+                        style={styles.inputStyle}
+                        placeholderTextColor={"#8b7d6b"}
+                        placeholder={"Soyadınız"}
                         value={surname}
                         onChangeText={(text) => setSurname(text)}
                     ></TextInput>
-                </View>
-                <View style={style.board}>
-                    <View style={{width: 327}}>
-                        <Text style={style.textinputItem}> Email</Text>
-                    </View>
                     <TextInput
-                        style={style.textInput}
+                        style={styles.inputStyle}
+                        placeholderTextColor={"#8b7d6b"}
+                        placeholder={"E-mail"}
                         value={email}
                         onChangeText={(text) => setEmail(text)}
                     ></TextInput>
-                </View>
-                <View style={[style.board, {marginTop: 30}]}>
-                    <View style={{width: 327}}>
-                        <Text style={style.textinputItem}> Şifre</Text>
-                    </View>
                     <TextInput
-                        style={style.textInput}
+                        style={styles.inputStyle}
+                        placeholderTextColor={"#8b7d6b"}
+                        placeholder={"Şifre"}
                         value={password}
                         onChangeText={(text) => setPassword(text)}
                         secureTextEntry={true}
                     ></TextInput>
                 </View>
-                <View style={[style.buttons]}>
+                <View style={{alignSelf: "center"}}>
                     <TouchableOpacity
-                        onPress={handleCreateAccount}
-                        style={[style.buttonitem, {backgroundColor: "#f4311e"}]}
+                        style={styles.buttonStyle}
+                        onPress={() => handleCreateAccount()}
                     >
-                        <Text style={[style.buttonText, {marginStart: 0}]}>Üye Ol</Text>
+                        <Text style={styles.buttonText}>Kayıt Ol</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
-            <View
-                style={{
-                    flexDirection: "row",
-                    alignSelf: "center",
-                    marginVertical: 15,
-                }}
-            >
-                <Text style={{color: "#CDCFD0"}}>Hesabınız var mı? </Text>
-                <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-                    <Text style={{color: "#f4311e"}}> Giriş Yap </Text>
-                </TouchableOpacity>
-            </View>
-        </ScrollView>
+                <View   style={{flexDirection: "row", alignSelf: "center", marginVertical:20}}>
+                  <Text style={{color: "#F9F5E6", alignSelf: 'center',fontSize:16}}>Hesabınız var mı?  </Text>
+                  <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                      <Text style={{fontSize:16, color:'#F9F5E6',fontWeight:'700'}}>Giriş Yap </Text>
+                  </TouchableOpacity>
+                </View>
+            </ScrollView>
+
     );
 }
-const style = StyleSheet.create({
-    textItem: {
-        justifyContent: "center",
+const styles = StyleSheet.create({
+    title: {
+        fontSize: 30,
+        fontWeight: "bold",
+        color: "#F9F5E6",
         alignSelf: "center",
-        marginTop: 50,
+        marginTop: 20,
+    },
+
+    inputStyle: {
         width: 300,
-    },
-    textStyle: {
-        textAlign: "center",
-        color: "#fff",
-        fontWeight: "900",
-        fontSize: 52,
-        marginBottom: 5,
-    },
-    textStyle2: {
-        textAlign: "center",
-        color: "#CDCFD0",
-        fontWeight: "300",
-        fontSize: 13,
-    },
-    textinputItem: {
-        color: "#CDCFD0",
-        fontSize: 14,
-        paddingLeft: 10,
-        paddingBottom: 5,
-    },
-    textInput: {
-        width: 327,
-        height: 48,
-        padding: 15,
-        backgroundColor: "#181818",
+        height: 50,
+        backgroundColor: '#F9F5E6',
         borderRadius: 50,
-        justifyContent: "center",
-        alignItems: "center",
-        color: "#fff",
-    },
-    iconstyle: {
-        borderWidth: 1,
-        borderColor: "#CDCFD0",
-        borderRadius: 30,
-        marginLeft: 5,
-        marginRight: 5,
-    },
-    board: {
-        alignItems: "center",
-        justifyContent: "center",
         marginTop: 20,
-        flexDirection: "column",
+        paddingLeft: 20,
     },
-    buttons: {
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 20,
-    },
-    buttonitem: {
-        width: 327,
-        padding: 15,
-        backgroundColor: "#fff",
-        marginBottom: 20,
+
+    buttonStyle: {
+        width: 300,
+        height: 50,
+        backgroundColor: "#0f0805",
         borderRadius: 50,
+        marginTop:20,
+        justifyContent: "center",
     },
+
     buttonText: {
-        marginStart: 30,
         textAlign: "center",
-        color: "#fff",
-        fontWeight: "300",
-        fontSize: 16,
-    },
-    alert: {
-        color: "#fff",
-        fontSize: 16,
+        color: "#F9F5E6",
+        fontWeight: "400",
+        fontSize: 18,
     },
 });
